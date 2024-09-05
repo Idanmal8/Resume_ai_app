@@ -1,0 +1,4 @@
+enum Resume{
+  general,
+  designated,
+}
