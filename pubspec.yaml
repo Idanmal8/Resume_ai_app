@@ -8,6 +8,8 @@ environment:
 
 dependencies:
   dotted_border: ^2.1.0
+  firebase_auth: ^4.16.0
+  firebase_core: ^2.24.2
   flutter:
     sdk: flutter
   google_generative_ai: ^0.4.5
