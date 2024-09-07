@@ -9,19 +9,19 @@ class OutputScreenViewModel extends ChangeNotifier {
   bool get isLoading => _isLoading;
   UserInformation get geminiOutcome => _geminiOutcome;
 
-  OutputScreenViewModel() {
-    _init();
+  OutputScreenViewModel(UserInformation userInformation) {
+    _init(userInformation);
   }
 
-  void _init() async {
-    getGeminiOutcome();
+  void _init(UserInformation userInfo) async {
+    getGeminiOutcome(userInfo);
   }
 
-  void getGeminiOutcome() async {
+  void getGeminiOutcome(UserInformation userInfo) async {
     _isLoading = true;
     notifyListeners();
 
-    final response = await GeminiService().generateContent();
+    final response = await GeminiService().generateContent(userInfo);
     _geminiOutcome = response;
 
     _isLoading = false;

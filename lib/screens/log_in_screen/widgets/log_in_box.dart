@@ -1,12 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+
 import 'package:resume_ai_app/providers/log_in_screen_view_model/log_in_screen_view_model.dart';
-import 'package:resume_ai_app/screens/log_in_screen/log_in_screen.dart';
 
 class LogInBox extends StatelessWidget {
-  const LogInBox({
-    super.key,
-  });
+  const LogInBox({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -87,7 +85,18 @@ class LogInBox extends StatelessWidget {
                             onPressed: () {
                               viewModel.signIn(context);
                             },
-                            child: const Text('Lets go!',
+                            child: 
+                            viewModel.isLoading
+                                ? const SizedBox(
+                                    height: 20,
+                                    width: 20,
+                                  child: CircularProgressIndicator(
+                                      valueColor: AlwaysStoppedAnimation<Color>(
+                                          Colors.white),
+                                    ),
+                                )
+                                :
+                            const Text('Lets go!',
                                 style: TextStyle(
                                     fontSize: 15, color: Colors.white)),
                           ),

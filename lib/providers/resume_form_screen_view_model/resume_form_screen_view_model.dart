@@ -1,7 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:resume_ai_app/models/enum/degree.dart';
+import 'package:resume_ai_app/models/resume/resume_configuration.dart';
 import 'package:resume_ai_app/models/user_education.dart';
 import 'package:resume_ai_app/models/user_expirience.dart';
+import 'package:resume_ai_app/models/user_information.dart';
+import 'package:resume_ai_app/models/user_social_media.dart';
+import 'package:resume_ai_app/providers/designated_screen_view_model/designated_screen_view_model.dart';
 import 'package:resume_ai_app/screens/output_screen/output_screen.dart';
 import 'package:resume_ai_app/utils/mixin/about_me_mixin.dart';
 import 'package:resume_ai_app/utils/mixin/education_information_mixin.dart';
@@ -15,8 +19,7 @@ class ResumeFormScreenViewModel extends ChangeNotifier
         ExpirienceInformationMixin,
         AboutMeMixin,
         EducationInformationMixin,
-        ProjectsMixin
-         {
+        ProjectsMixin {
   final GlobalKey<FormState> formKey = GlobalKey<FormState>();
   final TextEditingController skillController = TextEditingController();
   final TextEditingController softSkillController = TextEditingController();
@@ -272,7 +275,48 @@ class ResumeFormScreenViewModel extends ChangeNotifier
     nextStep();
   }
 
-  void goToOutcomeScreen(BuildContext context){
-    Navigator.push(context, MaterialPageRoute(builder: (context) => const OutputScreen()));
+  void createUserInformation(BuildContext context, List<ResumeConfiguration> resumes) {
+    UserInformation userInformation = UserInformation(
+      fullName: fullNameController.text,
+      email: emailController.text,
+      phoneNumber: phoneNumberController.text,
+      location: locationController.text,
+      profeesion: professionController.text,
+      aboutMe: aboutMeController.text,
+      technicalSkills: skills,
+      softSkills: softSkills,
+      userEducation: education,
+      userScocialMedia: UserSocialMedia(
+        facebook: '',
+        linkedIn: linkedInController.text,
+        github: githubController.text,
+        twitter: twitterController.text,
+        tiktok:
+            portfolioController.text, // change this to portfolio in the model
+        instagram: instagramController.text,
+      ),
+      userExpirience: experiences,
+      userProfessionalProjects: userProfessionalProjects,
+      userFunProjects: userFunProjects,
+      userRefrences: [],
+      languages: ['English', 'Hebrew'],
+    );
+    print(userInformation.toJson());
+    resumes.add(ResumeConfiguration(
+      kind: ResumeKind.newResume,
+      role: 'General',
+      jobDescription: 'General',
+      userInformation: userInformation,
+    ));
+    goToOutcomeScreen(context, userInformation);
+  }
+
+  void goToOutcomeScreen(
+      BuildContext context, UserInformation userInformation) {
+    Navigator.push(
+        context,
+        MaterialPageRoute(
+            builder: (context) =>
+                OutputScreen(userInformation: userInformation)));
   }
 }

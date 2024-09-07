@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:resume_ai_app/models/user_fun_projects.dart';
 import 'package:resume_ai_app/models/user_professional_projects.dart';
 
 mixin ProjectsMixin {
@@ -7,7 +8,7 @@ mixin ProjectsMixin {
   List<TextEditingController> professionalProjectDiscription = [];
   List<TextEditingController> professionalProjectLinkController = [];
 
-  List<UserProfessionalProjects> userFunProjects = [];
+  List<UserFunProjects> userFunProjects = [];
   List<TextEditingController> funProjectNameController = [];
   List<TextEditingController> funProjectDiscription = [];
   List<TextEditingController> funProjectLinkController = [];
@@ -73,7 +74,7 @@ mixin ProjectsMixin {
 
   // Fun projects
   void addFunProject(int index) {
-    userFunProjects.add(UserProfessionalProjects(
+    userFunProjects.add(UserFunProjects(
         projectName: '', projectDescription: '', projectLink: ''));
 
     funProjectNameController.add(TextEditingController());

@@ -58,7 +58,7 @@ class DesignatedScreenViewModel extends ChangeNotifier {
       return;
     } else {
       Navigator.push(context,
-          MaterialPageRoute(builder: (context) => const ResumeFormScreen()));
+          MaterialPageRoute(builder: (context) => const ResumeFormScreen(resumes: [],)));
       notifyListeners();
     }
   }

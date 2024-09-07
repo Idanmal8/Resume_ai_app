@@ -1,5 +1,6 @@
 import 'package:provider/provider.dart';
 import 'package:flutter/material.dart';
+import 'package:resume_ai_app/models/resume/resume_configuration.dart';
 
 import 'package:resume_ai_app/providers/resume_form_screen_view_model/resume_form_screen_view_model.dart';
 
@@ -13,7 +14,12 @@ import 'package:resume_ai_app/utils/colors/app_colors.dart';
 import 'package:resume_ai_app/widgets/errors/fix_chip.dart';
 
 class ResumeFormScreen extends StatelessWidget {
-  const ResumeFormScreen({super.key});
+  final List<ResumeConfiguration> resumes;
+  
+  const ResumeFormScreen({
+    required this.resumes,
+    super.key,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -41,7 +47,7 @@ class ResumeFormScreen extends StatelessWidget {
                           currentStep: viewModel.stepIndex,
                           onStepContinue: () {
                             if (viewModel.stepIndex == 3) {
-                              viewModel.goToOutcomeScreen(context);
+                              viewModel.createUserInformation(context, resumes);
                             } else {
                               viewModel.validateStepBeforeMoving();
                             }

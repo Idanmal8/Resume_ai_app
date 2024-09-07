@@ -22,6 +22,7 @@ class LogInScreenViewModel extends ChangeNotifier with SignInMixin {
           password: passwordController.text,
         );
         if (context.mounted) {
+          _isLoading = false;
           goToHomeScreen(context);
         }
       } on FirebaseAuthException catch (e) {
