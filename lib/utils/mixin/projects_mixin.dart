@@ -54,11 +54,16 @@ mixin ProjectsMixin {
   }
 
   void updateProfessionalProject(int index) {
-    userProfessionalProjects[index].copyWith(
+    userProfessionalProjects[index] = userProfessionalProjects[index].copyWith(
       projectName: professionalProjectNameController[index].text,
       projectDescription: professionalProjectDiscription[index].text,
       projectLink: professionalProjectLinkController[index].text,
-    ); 
+    );
+
+    print(professionalProjectNameController[index]
+        .text); // Check if the text controller is updating correctly
+    print(userProfessionalProjects[index]
+        .projectName); // Check the updated value in the object
   }
 
   void removeProfessionalProject(int index) {
@@ -83,7 +88,7 @@ mixin ProjectsMixin {
   }
 
   void updateFunProject(int index) {
-    userFunProjects[index].copyWith(
+    userFunProjects[index] = userFunProjects[index].copyWith(
       projectName: funProjectNameController[index].text,
       projectDescription: funProjectDiscription[index].text,
       projectLink: funProjectLinkController[index].text,

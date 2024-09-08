@@ -90,7 +90,7 @@ UserInformation createMockUserInformation() {
     userEducation: userEducations,
     userFunProjects: userFunProjects,
     userProfessionalProjects: userProfessionalProjects,
-    userRefrences: userRefrences,
+    // userRefrences: userRefrences,
     languages: ['English', 'Spanish'],
   );
 

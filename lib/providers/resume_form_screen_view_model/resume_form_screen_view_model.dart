@@ -4,6 +4,7 @@ import 'package:resume_ai_app/models/resume/resume_configuration.dart';
 import 'package:resume_ai_app/models/user_education.dart';
 import 'package:resume_ai_app/models/user_expirience.dart';
 import 'package:resume_ai_app/models/user_information.dart';
+import 'package:resume_ai_app/models/user_professional_projects.dart';
 import 'package:resume_ai_app/models/user_social_media.dart';
 import 'package:resume_ai_app/providers/designated_screen_view_model/designated_screen_view_model.dart';
 import 'package:resume_ai_app/screens/output_screen/output_screen.dart';
@@ -249,33 +250,42 @@ class ResumeFormScreenViewModel extends ChangeNotifier
   }
 
   void validateStepBeforeMoving() {
-    // switch (_stepIndex) {
-    //   case 0:
-    //     if (validateEmail() != null ||
-    //         validatePhoneNumber() != null ||
-    //         fullNameController.text.isEmpty ||
-    //         locationController.text.isEmpty ||
-    //         professionController.text.isEmpty) {
-    //       formKey.currentState!.validate();
-    //       setError('Please fill out all required fields correctly');
-    //       return;
-    //     }
-    //     break;
-    //   case 1:
-    //     if (aboutMeController.text.isEmpty) {
-    //       setError('About me must be filled');
-    //       return;
-    //     }
-    //     break;
-    //   case 2:
-    //     break;
-    //   case 3:
-    //     break;
-    // }
+    switch (_stepIndex) {
+      case 0:
+        if (validateEmail() != null ||
+            validatePhoneNumber() != null ||
+            fullNameController.text.isEmpty ||
+            locationController.text.isEmpty ||
+            professionController.text.isEmpty) {
+          formKey.currentState!.validate();
+          setError('Please fill out all required fields correctly');
+          return;
+        }
+        break;
+      case 1:
+        if (aboutMeController.text.isEmpty) {
+          setError('About me must be filled');
+          return;
+        }
+        break;
+      case 2:
+        break;
+      case 3:
+        break;
+    }
     nextStep();
   }
 
-  void createUserInformation(BuildContext context, List<ResumeConfiguration> resumes) {
+  void createUserInformation(
+      BuildContext context, List<ResumeConfiguration> resumes) {
+    for (int i = 0; i < userProfessionalProjects.length; i++) {
+      updateProProject(i);
+      notifyListeners();
+    }
+    for(int i = 0; i < userFunProjects.length; i++) {
+      updateFunProject(i);
+      notifyListeners();
+    }
     UserInformation userInformation = UserInformation(
       fullName: fullNameController.text,
       email: emailController.text,
@@ -298,10 +308,10 @@ class ResumeFormScreenViewModel extends ChangeNotifier
       userExpirience: experiences,
       userProfessionalProjects: userProfessionalProjects,
       userFunProjects: userFunProjects,
-      userRefrences: [],
+      // userRefrences: [],
       languages: ['English', 'Hebrew'],
     );
-    print(userInformation.toJson());
+
     resumes.add(ResumeConfiguration(
       kind: ResumeKind.newResume,
       role: 'General',
@@ -317,6 +327,6 @@ class ResumeFormScreenViewModel extends ChangeNotifier
         context,
         MaterialPageRoute(
             builder: (context) =>
-                OutputScreen(userInformation: userInformation)));
+                OutputScreen()));
   }
 }

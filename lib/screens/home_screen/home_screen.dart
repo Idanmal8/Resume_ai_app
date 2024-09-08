@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:resume_ai_app/providers/home_screen_view_model/home_screen_view_model.dart';
-import 'package:resume_ai_app/screens/designated_role_screen/designated_role_screen.dart';
-import 'package:resume_ai_app/screens/resume_form_screen/resume_form_screen.dart';
 import 'package:resume_ai_app/utils/colors/app_colors.dart';
 import 'package:resume_ai_app/widgets/resume_container.dart';
 import 'package:resume_ai_app/widgets/templates/brown_rose_template/brown_rose_template.dart';
@@ -21,8 +19,11 @@ class HomeScreen extends StatelessWidget {
         child: Consumer<HomeScreenViewModel>(
           builder: (context, viewModel, _) {
             if (viewModel.isLoading) {
-              return const Center(
-                child: CircularProgressIndicator(),
+              return Center(
+                child: CircularProgressIndicator(
+                  color: AppColors().mainColor,
+                  strokeCap: StrokeCap.round,
+                ),
               );
             }
             return Stack(children: [

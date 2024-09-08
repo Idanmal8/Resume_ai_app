@@ -24,7 +24,7 @@ class UserInformation {
   final List<UserEducation> userEducation;
   final List<UserFunProjects> userFunProjects;
   final List<UserProfessionalProjects> userProfessionalProjects;
-  final List<UserRefrences> userRefrences;
+  // final List<UserRefrences> userRefrences;
   final List<String> languages;
   UserInformation({
     required this.fullName,
@@ -40,7 +40,7 @@ class UserInformation {
     required this.userEducation,
     required this.userFunProjects,
     required this.userProfessionalProjects,
-    required this.userRefrences,
+    // required this.userRefrences,
     required this.languages,
   });
 
@@ -76,7 +76,7 @@ class UserInformation {
       userFunProjects: userFunProjects ?? this.userFunProjects,
       userProfessionalProjects:
           userProfessionalProjects ?? this.userProfessionalProjects,
-      userRefrences: userRefrences ?? this.userRefrences,
+      // userRefrences: userRefrences ?? this.userRefrences,
       languages: languages ?? this.languages,
     );
   }
@@ -97,7 +97,7 @@ class UserInformation {
       'userFunProjects': userFunProjects.map((x) => x.toMap()).toList(),
       'userProfessionalProjects':
           userProfessionalProjects.map((x) => x.toMap()).toList(),
-      'userRefrences': userRefrences.map((x) => x.toMap()).toList(),
+      // 'userRefrences': userRefrences.map((x) => x.toMap()).toList(),
       'languages': languages,
     };
   }
@@ -133,11 +133,11 @@ class UserInformation {
         (x) => UserProfessionalProjects.fromMap(x as Map<String, dynamic>),
       ),
     ),
-    userRefrences: List<UserRefrences>.from(
-      (map['userRefrences'] as List<dynamic>).map<UserRefrences>(
-        (x) => UserRefrences.fromMap(x as Map<String, dynamic>),
-      ),
-    ),
+    // userRefrences: map['userRefrences'].length != 0 ? List<UserRefrences>.from(
+    //   (map['userRefrences'] as List<dynamic>).map<UserRefrences>(
+    //     (x) => UserRefrences.fromMap(x as Map<String, dynamic>),
+    //   ),
+    // ) : [],
     languages: List<String>.from(map['languages'] as List<dynamic>),  // Convert dynamic to String
   );
 }

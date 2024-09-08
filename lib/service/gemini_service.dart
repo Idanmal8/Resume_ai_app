@@ -25,6 +25,7 @@ This output in the json should be the best there is so the user will feel like y
 Two key things you should always DO:
 1) Return only the JSON with no further words
 2) DO NOT CHANGE the model in any way
+3)DO NOT RETURN NULL values at any means even if it means putting a value you think is needed
 
 (do not put the startDate and endDate together, keep them as is)
   ''';

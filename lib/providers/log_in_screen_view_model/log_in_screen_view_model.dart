@@ -2,6 +2,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:resume_ai_app/auth/auth.dart';
 import 'package:resume_ai_app/screens/home_screen/home_screen.dart';
+import 'package:resume_ai_app/screens/output_screen/output_screen.dart';
 import 'package:resume_ai_app/utils/mixin/sign_in_mixin.dart';
 
 class LogInScreenViewModel extends ChangeNotifier with SignInMixin {
@@ -50,6 +51,6 @@ class LogInScreenViewModel extends ChangeNotifier with SignInMixin {
 
   void goToHomeScreen(BuildContext context) {
     Navigator.of(context).pushReplacement(
-        MaterialPageRoute(builder: (context) => const HomeScreen()));
+        MaterialPageRoute(builder: (context) => const OutputScreen()));
   }
 }

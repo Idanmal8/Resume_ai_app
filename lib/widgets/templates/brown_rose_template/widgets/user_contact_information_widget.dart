@@ -51,22 +51,23 @@ class UserContactBrownRoseWidget extends StatelessWidget {
             Text(email, style: const TextStyle(fontSize: 4)),
           ],
         ),
-        const SizedBox(height: 8),
-        Row(
-          children: [
-            Container(
-                color: ResumeBrownRoseColors().brownRose,
-                child: const Padding(
-                  padding: EdgeInsets.all(2.0),
-                  child: Icon(
-                    Icons.link,
-                    size: 8,
-                  ),
-                )),
-            const SizedBox(width: 8),
-            Text(portfolio, style: const TextStyle(fontSize: 4)),
-          ],
-        ),
+        if (portfolio != '') const SizedBox(height: 8),
+        if (portfolio != '')
+          Row(
+            children: [
+              Container(
+                  color: ResumeBrownRoseColors().brownRose,
+                  child: const Padding(
+                    padding: EdgeInsets.all(2.0),
+                    child: Icon(
+                      Icons.link,
+                      size: 8,
+                    ),
+                  )),
+              const SizedBox(width: 8),
+              Text(portfolio, style: const TextStyle(fontSize: 4)),
+            ],
+          ),
         const SizedBox(height: 8),
         Row(
           children: [
